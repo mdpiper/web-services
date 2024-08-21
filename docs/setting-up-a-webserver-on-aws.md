@@ -3,6 +3,8 @@
 These are the steps I've used to set up an EC2 instance
 with an Apache web server.
 
+I'm using the N. California (us-west-1) region for all settings.
+
 ## Network and security
 
 Before creating an EC2 instance,
@@ -30,8 +32,38 @@ SSH only needs IPv4, but also add IPv6 for HTTP and HTTPS.
 
 ## Create the EC2 instance
 
-Set up an EC2 instance based on an *Amazon Linux 2* (AL2) image.
-If you use a different image, such as Ubuntu or Red Hat, the following instructions may not map directly.
+Set up an EC2 instance for the webserver.
+The settings I used follow.
+
+| Setting | Value
+| ------- | -----
+| Name | csdms.io
+| Amazon Machine Image | Amazon Linux 2023
+| Architecture | x86_64
+| Instance type | t3a.medium (4 G, 2 vCPUs)
+| Key pair | csdms-jh
+| Security group | csdms-secure
+| Storage | 100 G, gp3
+| Default user (with sudo) | ec2-user
+
+Note that you can you use a different AMI, such as Ubuntu or Red Hat, but the following instructions may not map exactly.
+
+I chose a t3a.medium instance for the additional memory.
+
+## Connect to the EC2 instance
+
+After creating the EC2 instance,
+return to the **Network & Security** settings
+and allocate an Elastic IP address.
+Associate this Elastic IP with the *csdms.io* EC2 instance.
+This gives the instance a static IP address.
+
+If you have the *csdms-jh* private key,
+you can now SSH into the instance:
+```bash
+ssh -i "csdms-jh.pem" ec2-user@<elastic-ip-address>
+```
+where `<elastic-ip-address>` is the IPv4 address of the Elastic IP.
 
 ## Notes
 

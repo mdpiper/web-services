@@ -65,6 +65,15 @@ ssh -i "csdms-jh.pem" ec2-user@<elastic-ip-address>
 ```
 where `<elastic-ip-address>` is the IPv4 address of the Elastic IP.
 
+Once logged in, check the OS version:
+```bash
+cat /etc/system-release
+```
+which gives
+```
+Amazon Linux release 2023.5.20240819 (Amazon Linux)
+```
+
 ## Notes
 
 * Use the CSDMS 4 billing account on CloudBank to keep this work separate from OpenEarthscape.

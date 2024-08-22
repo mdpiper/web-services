@@ -1,6 +1,6 @@
 # Setting up a webserver on AWS
 
-These are the steps I've used to set up an EC2 instance
+These are the steps I used to set up an EC2 instance
 with an Apache web server.
 
 I'm using the N. California (us-west-1) region for all settings.
@@ -69,10 +69,41 @@ Once logged in, check the OS version:
 ```bash
 cat /etc/system-release
 ```
-which gives
+
+## Install and test the web server
+
+SSH into the EC2 instance.
+
+First, check that the system software on the instance is up to date:
+```bash
+sudo yum update
 ```
-Amazon Linux release 2023.5.20240819 (Amazon Linux)
+
+Install the Apache web server:
+```bash
+sudo yum install httpd
 ```
+
+Once installed, start the web server:
+```bash
+sudo systemctl start httpd
+```
+and then check that it's running:
+```bash
+sudo systemctl status httpd
+```
+
+Last, set the web server so that it starts automatically:
+```bash
+sudo systemctl enable httpd
+```
+and check this with:
+```bash
+sudo systemctl is-enabled httpd
+```
+
+Test the web server by going to the IP address of the EC2 instance.
+If no content has been placed in the webroot, `/var/www/html`, you should see the Apache test page with a helpful message.
 
 ## Notes
 

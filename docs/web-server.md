@@ -61,9 +61,9 @@ This gives the instance a static IP address.
 If you have the *csdms-jh* private key,
 you can now SSH into the instance:
 ```bash
-ssh -i "csdms-jh.pem" ec2-user@13.56.97.225
+ssh -i "csdms-jh.pem" ec2-user@9.9.9.9
 ```
-where `13.56.97.225` is the IPv4 address of the Elastic IP.
+where `9.9.9.9` should be replaced with the IPv4 address of the Elastic IP.
 
 Once logged in, check the OS version:
 ```bash

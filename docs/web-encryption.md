@@ -8,7 +8,9 @@ on an EC2 instance with an Apache web server.
 After [setting up a web server](./web-server.md),
 we can access it with HTTP:
 
-http://13.56.97.225/
+http://9.9.9.9
+
+where `9.9.9.9` should be replaced with the IPv4 address of the Elastic IP.
 
 We want to be able to access it with HTTPS, though, as this is
 
@@ -66,13 +68,33 @@ sudo systemctl status httpd
 
 Now access the site with HTTPS:
 
-https://13.56.97.225/
+https://9.9.9.9/
+
+where `9.9.9.9` should be replaced with the IPv4 address of the Elastic IP.
 
 Because the certificate is self-signed it's insecure and web browsers will reject it.
 Override the objections of the web browser. 
 
 We're now using TLS on the server.
 All data passing between the browser and server are encrypted.
+
+## Get a CA-signed certificate
+
+The self-signed TLS certificate created above is only useful for testing;
+it will be rejected by browsers as insecure.
+Instead, we need to get a certificate signed by a certificate authority.
+
+In the past,
+I've used [Let's Encrypt](https://letsencrypt.org/) for certificates.
+There's a bit of work involved in getting and managing certificates this way.
+I'll write this up later.
+
+Currently, I'm trying [Cloudflare](https://developers.cloudflare.com),
+which, for domain names registered with them,
+automatically provides [free certificates](https://developers.cloudflare.com/ssl/edge-certificates/universal-ssl/) for the apex domain and the first-level subdomain,
+as long as you [proxy](https://developers.cloudflare.com/dns/manage-dns-records/reference/proxied-dns-records/) through Cloudflare.
+Because DNS requests are proxied,
+I didn't have to modify anything on the web server.
 
 ## References
 

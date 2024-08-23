@@ -1,12 +1,11 @@
-# Setting up SSL on a webserver
+# Set up web encryption
 
 These are the steps I followed to enable web encryption
 on an EC2 instance with an Apache web server.
-Much of this comes from the [Configure SSL/TLS on AL2](https://docs.aws.amazon.com/linux/al2/ug/SSL-on-amazon-linux-2.html) tutorial.
 
 ## Enable TLS on the server
 
-After [setting up a web server](setting-up-a-webserver-on-aws.md),
+After [setting up a web server](./web-server.md),
 we can access it with HTTP:
 
 http://13.56.97.225/
@@ -65,7 +64,7 @@ and check that it's running:
 sudo systemctl status httpd
 ```
 
-Access the site with HTTPS:
+Now access the site with HTTPS:
 
 https://13.56.97.225/
 
@@ -74,3 +73,7 @@ Override the objections of the web browser.
 
 We're now using TLS on the server.
 All data passing between the browser and server are encrypted.
+
+## References
+
+* *Tutorial: Configure SSL/TLS on AL2*: https://docs.aws.amazon.com/linux/al2/ug/SSL-on-amazon-linux-2.html

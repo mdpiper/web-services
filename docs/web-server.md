@@ -1,6 +1,6 @@
-# Setting up a webserver on AWS
+# Set up a web server on AWS
 
-These are the steps I used to set up an EC2 instance
+These are the steps I used to configure an EC2 instance
 with an Apache web server.
 
 I'm using the N. California (us-west-1) region for all settings.
@@ -61,9 +61,9 @@ This gives the instance a static IP address.
 If you have the *csdms-jh* private key,
 you can now SSH into the instance:
 ```bash
-ssh -i "csdms-jh.pem" ec2-user@<elastic-ip-address>
+ssh -i "csdms-jh.pem" ec2-user@13.56.97.225
 ```
-where `<elastic-ip-address>` is the IPv4 address of the Elastic IP.
+where `13.56.97.225` is the IPv4 address of the Elastic IP.
 
 Once logged in, check the OS version:
 ```bash
@@ -103,8 +103,8 @@ sudo systemctl is-enabled httpd
 ```
 
 Test the web server by going to the IP address of the EC2 instance.
-If no content has been placed in the webroot, `/var/www/html`, you should see the Apache test page with a helpful message.
+If no content has been placed in the document root, `/var/www/html`, you should see the Apache test page with a welcome message.
 
-## Notes
+## References
 
-* Use the CSDMS 4 billing account on CloudBank to keep this work separate from OpenEarthscape.
+* *Tutorial: Install a LAMP server on AL2*: https://docs.aws.amazon.com/linux/al2/ug/ec2-lamp-amazon-linux-2.html

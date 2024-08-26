@@ -1,0 +1,11 @@
+[Unit]
+Description=flood_app
+After=syslog.target network.target httpd-init.service
+
+[Service]
+User=root
+Environment="PATH=/home/ec2-user/miniforge3/envs/flood_app/bin:/home/ec2-user/miniforge3/condabin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:/home/ec2-user/bin"
+ExecStart=/home/ec2-user/miniforge3/envs/flood_app/bin/start-app --port=2053 --ssl-cert=/etc/pki/tls/certs/csdms.io.pem --ssl-key=/etc/pki/tls/private/csdms.io.key
+
+[Install]
+WantedBy=multi-user.target

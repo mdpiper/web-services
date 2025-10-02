@@ -1,11 +1,19 @@
+# systemd unit file for the landlab-rest service
+#
+# Place this file in `/etc/systemd/system/landlab-rest.service`
+# then run:
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable landlab-rest
+#   sudo systemctl start landlab-rest
+
 [Unit]
 Description=landlab-rest
 After=syslog.target network.target httpd-init.service
 
 [Service]
 User=root
-Environment="PATH=/home/ec2-user/mambaforge/envs/landlab-rest/bin:/home/ec2-user/mambaforge/condabin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:/home/ec2-user/bin"
-ExecStart=/home/ec2-user/mambaforge/envs/landlab-rest/bin/start-sketchbook --port=8000 --ssl-cert=/etc/letsencrypt/live/sketchbook.openearthscape.org/cert.pem --ssl-key=/etc/letsencrypt/live/sketchbook.openearthscape.org/privkey.pem --ssl-chain=/etc/letsencrypt/live/sketchbook.openearthscape.org/chain.pem
+Environment="PATH=/home/ec2-user/miniforge3/envs/sketchbook/bin:/home/ec2-user/miniforge3/condabin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:/home/ec2-user/bin"
+ExecStart=/home/ec2-user/miniforge3/envs/sketchbook/bin/start-sketchbook --port=2083 --ssl-cert=/etc/pki/tls/certs/csdms.io.pem --ssl-key=/etc/pki/tls/private/csdms.io.key
 
 [Install]
 WantedBy=multi-user.target
